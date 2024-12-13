@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Seleção de Jogos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #0077ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .game-selection {
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeIn 1s forwards, scaleUp 1s forwards;
+      transition: all 0.3s ease-in-out;
+    }
+    .game-box {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      border: 3px solid #000;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      opacity: 1;
+      transition: transform 0.4s ease-in-out;
+    }
+    .game-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+    .game-box:hover {
+      transform: scale(1.05);
+    }
+    .game-box:active {
+      transform: scale(0.98);
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+    .hidden {
+      display: none;
+    }
+    #game-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: portalEffect 1.5s forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes scaleUp {
+      to {
+        transform: scale(1);
+      }
+    }
+    @keyframes portalEffect {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(20);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-selection">
+    <div class="game-box" onclick="loadGame('subway')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYr633KwsnhaXFGKHmIWGzOkNXGGXO78y8Aj5b1ZFho-CG4mxq7hu74Mc&s=10" alt="Subway Surfers">
+    </div>
+    <div class="game-box" onclick="loadGame('level-devil')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmsOr1jERtpCY1ffmHKlUhW7vrdhJdSvWKYVdx5vMor6tO9wCedD-P1Zo&s=10" alt="Level Devil">
+    </div>
+  </div>
+  <div id="game-container" class="hidden">
+    <iframe id="game-frame" src="" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function loadGame(game) {
+      // Esconde os jogos e mostra o portal
+      document.querySelector('.game-selection').classList.add('hidden');
+      const iframe = document.getElementById('game-frame');
+      if (game === 'subway') {
+        iframe.src = "https://szhong.4399.com/4399swf//upload_swf/ftp38/liuxinyu/20220308/1/index.html";
+      } else if (game === 'level-devil') {
+        iframe.src = "https://bitlifeonline.github.io/level-devil/";
+      }
+      document.getElementById('game-container').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
