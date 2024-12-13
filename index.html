@@ -106,7 +106,7 @@
   <script>
     function loadGame(game) {
       // Esconde os jogos e mostra o portal
-      document.querySelector('.game-selection').classList.add('hidden');
+      document.querySelector('.game-selection').style.display = 'none';  // Agora apenas esconde os jogos
       const iframe = document.getElementById('game-frame');
       if (game === 'subway') {
         iframe.src = "https://szhong.4399.com/4399swf//upload_swf/ftp38/liuxinyu/20220308/1/index.html";
